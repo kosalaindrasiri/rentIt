@@ -62,11 +62,20 @@ Route::get('/rentitem', function (){
 
 
 Route::post('/rentitem', function (Request $request) {
-    $rentitem = new \App\Rent_Detail();
+    //dd($request);
+    $rentitem = new \App\RentDetail();
     $rentitem->item_id = $request->input('item');
     $rentitem->nic = $request->input('nic');
     $rentitem->rent_date_and_time = $request->input('rentdate');
     $rentitem->paid = $request->input('paidamnt');
     $rentitem->save();
-    return redirect('/');
+    return redirect('/rentitem');
+});
+
+Route::get('/rentitem', function () {
+    $rentrecord = App\RentDetail::orderBy('created_at', 'asc')->get();
+    //var_dump($rentrecord);
+    //die;
+    return view('rentitem', ['rentlist'=>$rentrecord] );
+    
 });
