@@ -5,37 +5,37 @@ Route::get('/', [
     'uses'=>'ItemsController@showAll'
 ]);
 
-Route::post('additem', [
+Route::post('/items', [
     'as'=>'add-item',
     'uses'=>'ItemsController@addItem'
 ]);
 
-Route::delete('/delete/{item}', [
+Route::delete('items/{item}', [
     'as' => 'item.delete', 
     'uses'=> 'ItemsController@delete'
 ]);
 
-Route::get('/viewitem/{item}', [
+Route::get('items/{item}', [
     'as'=>'item.view', 
     'uses'=>'ItemsController@view'
 ]);
 
-Route::get('/updateitem/{item}', [
+Route::get('items/updateview/{item}', [
     'as'=>'item.updateView', 
     'uses'=>'ItemsController@updateForm'
 ]);
 
-Route::post('/update/{item}', [
+Route::post('items/{item}', [
     'as'=> 'item.update', 
     'uses'=>'ItemsController@update'
 ]);
 
-Route::get('/rentitem', [
+Route::get('/rent', [
     'as'=>'rent.viewItems', 
-    'uses'=>'rentController@view'
+    'uses'=>'RentController@view'
 ]);
 
-Route::post('/rentitem', [
+Route::post('/rent', [
    'as'=>'rent.addRent', 
-    'uses'=> 'rentController@add'
+    'uses'=> 'RentController@add'
 ]);

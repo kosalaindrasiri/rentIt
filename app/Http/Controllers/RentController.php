@@ -8,7 +8,7 @@ use App\Http\Requests;
 
 use App\RentDetail;
 
-class rentController extends Controller
+class RentController extends Controller
 {
     public function view(){
         $rentrecord = RentDetail::orderBy('created_at', 'asc')->get();
@@ -22,7 +22,8 @@ class rentController extends Controller
         $rentitem->rent_date_and_time = $request->input('rentdate');
         $rentitem->paid = $request->input('paidamnt');
         $rentitem->save();
-        return redirect('/rentitem');
+        
+        return redirect()->route('rent.viewItems');
     }
            
 }

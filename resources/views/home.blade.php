@@ -1,9 +1,9 @@
 
-<form method="get" action="/rentitem">
+<form method="get" action="/rent">
     <button type="submit">Rent an Item</button>
 </form>
 <h2>Add new Item</h2>
-<form action="/additem" method="POST" enctype="multipart/form-data">
+<form action="/items" method="POST" enctype="multipart/form-data">
     {!! csrf_field() !!}
     <label>Item Name</label><input type="text" name="name">
     <label>Price</label><input type="text" name="price">
@@ -21,7 +21,7 @@ foreach ($items as $item){
     <?php }?>
 
     
-       <form action="{{ url('viewitem/'.$item->id) }}" method="get" >
+       <form action="{{ url('items/'.$item->id) }}" method="get" >
         {!! csrf_field() !!} 
         <button type="submit">View</button>
     </form>

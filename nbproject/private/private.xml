@@ -4,10 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/store/Test/rentit/resources/views/updateitem.blade.php</file>
-            <file>file:/store/Test/rentit/app/Rent_Detail.php</file>
+            <file>file:/store/Test/rentit/app/Http/Controllers/ItemsController.php</file>
             <file>file:/store/Test/rentit/resources/views/home.blade.php</file>
             <file>file:/store/Test/rentit/app/Http/routes.php</file>
             <file>file:/store/Test/rentit/resources/views/rentitem.blade.php</file>
+            <file>file:/store/Test/rentit/app/Http/Controllers/rentController.php</file>
         </group>
     </open-files>
 </project-private>
