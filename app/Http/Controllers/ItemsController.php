@@ -23,12 +23,12 @@ class ItemsController extends Controller {
         $item->image_url = '../images/'.$filename.'.jpg';
         var_dump($item);
         $item->save();
-        return redirect('/');
+        return redirect()->route('dashboard.home');
     }
     
     public function delete(Item $item){
         $item ->delete();
-        return redirect('/');
+         return redirect()->route('dashboard.home');
     }
     
     public function view(Item $item){
@@ -44,7 +44,7 @@ class ItemsController extends Controller {
         $item->name = $request->name;
         $item->price = $request->price;
         $item->update();
-        return redirect('/');
+        return redirect('/dashboard');
     }
     
 }

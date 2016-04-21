@@ -1,41 +1,46 @@
 <?php
 
-Route::get('/', [
-    'as'=>'home',
-    'uses'=>'ItemsController@showAll'
-]);
-
 Route::post('/items', [
-    'as'=>'add-item',
-    'uses'=>'ItemsController@addItem'
+    'as' => 'items.add',
+    'uses' => 'ItemsController@addItem'
 ]);
 
 Route::delete('items/{item}', [
-    'as' => 'item.delete', 
-    'uses'=> 'ItemsController@delete'
+    'as' => 'items.delete',
+    'uses' => 'ItemsController@delete'
 ]);
 
-Route::get('items/{item}', [
-    'as'=>'item.view', 
-    'uses'=>'ItemsController@view'
-]);
-
-Route::get('items/updateview/{item}', [
-    'as'=>'item.updateView', 
-    'uses'=>'ItemsController@updateForm'
-]);
-
-Route::post('items/{item}', [
-    'as'=> 'item.update', 
-    'uses'=>'ItemsController@update'
-]);
-
-Route::get('/rent', [
-    'as'=>'rent.viewItems', 
-    'uses'=>'RentController@view'
+Route::put('items/{item}', [
+    'as' => 'items.update',
+    'uses' => 'ItemsController@update'
 ]);
 
 Route::post('/rent', [
-   'as'=>'rent.addRent', 
-    'uses'=> 'RentController@add'
+    'as' => 'rents.add',
+    'uses' => 'RentController@add'
 ]);
+
+Route::group([
+    'prefix' => 'dashboard/'
+        ], function() {
+    
+    Route::get('/', [
+        'as' => 'dashboard.home',
+        'uses' => 'ItemsController@showAll'
+    ]);
+
+    Route::get('items/{item}', [
+        'as' => 'dashboard.items.one',
+        'uses' => 'ItemsController@view'
+    ]);
+
+    Route::get('items/{item}/update', [
+        'as' => 'dashboard.items.one.update',
+        'uses' => 'ItemsController@updateForm'
+    ]);
+
+    Route::get('/rents', [
+        'as' => 'dashboard.rents.all',
+        'uses' => 'RentController@view'
+    ]);
+});

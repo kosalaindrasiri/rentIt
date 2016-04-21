@@ -23,7 +23,7 @@ class RentController extends Controller
         $rentitem->paid = $request->input('paidamnt');
         $rentitem->save();
         
-        return redirect()->route('rent.viewItems');
+        return redirect()->route('dashboard.rents.all');
     }
            
 }

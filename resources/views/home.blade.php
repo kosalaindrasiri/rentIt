@@ -1,5 +1,5 @@
 
-<form method="get" action="/rent">
+<form method="get" action="dashboard/rents">
     <button type="submit">Rent an Item</button>
 </form>
 <h2>Add new Item</h2>
@@ -21,7 +21,7 @@ foreach ($items as $item){
     <?php }?>
 
     
-       <form action="{{ url('items/'.$item->id) }}" method="get" >
+       <form action="{{ url('dashboard/items/'.$item->id) }}" method="get" >
         {!! csrf_field() !!} 
         <button type="submit">View</button>
     </form>
