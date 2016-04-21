@@ -33,7 +33,6 @@ class ItemsController extends Controller {
     
     public function view(Item $item){
         return view('viewitem', ['item'=>$item] );
-        return redirect('/');
     }
     
     public function updateForm(Item $item){
@@ -44,7 +43,7 @@ class ItemsController extends Controller {
         $item->name = $request->name;
         $item->price = $request->price;
         $item->update();
-        return redirect('/dashboard');
+        return redirect()->route('dashboard.home');
     }
     
 }

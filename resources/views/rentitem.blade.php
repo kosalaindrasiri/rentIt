@@ -1,4 +1,4 @@
-<form action="/rent" method="POST">
+<form action="{{route('rents.add')}}" method="POST">
     {!! csrf_field() !!}
     <h2>You can rent an item here</h2>
     <label>Item</label><input type="text" name="item">

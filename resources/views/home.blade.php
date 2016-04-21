@@ -1,9 +1,9 @@
 
-<form method="get" action="dashboard/rents">
+<form method="get" action="{{route('dashboard.rents.all')}}">
     <button type="submit">Rent an Item</button>
 </form>
 <h2>Add new Item</h2>
-<form action="/items" method="POST" enctype="multipart/form-data">
+<form action="{{route('items.add')}}" method="POST" enctype="multipart/form-data">
     {!! csrf_field() !!}
     <label>Item Name</label><input type="text" name="name">
     <label>Price</label><input type="text" name="price">
@@ -19,9 +19,7 @@ foreach ($items as $item){
    if ($item->image_url){?>
         <img width="100px" src="{{$item->image_url}}"></img>
     <?php }?>
-
-    
-       <form action="{{ url('dashboard/items/'.$item->id) }}" method="get" >
+       <form action="{{ route('dashboard.items.one', [$item -> id]) }}" method="get" >
         {!! csrf_field() !!} 
         <button type="submit">View</button>
     </form>
