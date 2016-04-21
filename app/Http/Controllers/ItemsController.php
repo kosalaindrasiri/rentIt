@@ -16,11 +16,11 @@ class ItemsController extends Controller {
     public function addItem(Request $request){
         $fileStoreIn = '../public/images/'; 
         $filename = str_random(10);
-        $request->file('image')->move($fileStoreIn, $filename.'.jpg');
+        $request->file('image')->move($fileStoreIn, $filename);
         $item = new Item();
         $item->name = $request->input('name');
         $item->price = $request->price;
-        $item->image_url = '../images/'.$filename.'.jpg';
+        $item->image_url = '/images/'.$filename;
         var_dump($item);
         $item->save();
         return redirect()->route('dashboard.home');
