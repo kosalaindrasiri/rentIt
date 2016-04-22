@@ -1,7 +1,9 @@
 @extends('main_structure')
 @section('content')
 <p>Item Name : {{$item->name}}</p>
-<p>Item Price: {{$item->price}}</p>
+<p>Purchased Price: {{$item->purchased_price}}</p>
+<p>Rent Price: {{$item->rent_price}}</p>
+<p>Item Code: {{$item->code}}</p>
 <img src="{{$item->image_url}}" width="100px"></img>
 <form action="{{ url('dashboard/items/'.$item->id).'/update' }}" method="get" >
         {!! csrf_field() !!} 

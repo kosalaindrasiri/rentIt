@@ -17,9 +17,10 @@ class CreateItemTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->boolean('availability');
-            $table->float('price');
-            $table->string('image_url');
-                          
+            $table->string('image_url')->nullable();
+            $table->float('rent_price');
+            $table->string('code');
+            $table->float('purchased_price');
         });
     }
 

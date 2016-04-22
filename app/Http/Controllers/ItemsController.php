@@ -18,13 +18,17 @@ class ItemsController extends Controller {
         $filename = str_random(10);
 
         $img_ext = substr($request->file('image')->getClientMimeType(), 6);
+	if($request->hasFile('image')){
         $request->file('image')->move($fileStoreIn, $filename . '.' . $img_ext);
+	}
         $item = new Item();
         $item->name = $request->input('name');
-        $item->price = $request->price;
+        $item->rent_price = $request->rent_price;
+        $item->purchased_price = $request->purchased_price;
+        $item->code = $request->code;
+        $item->availability = $request->availability;
         $item->image_url = '/images/' . $filename . '.' . $img_ext;
-        
-        var_dump($item);
+
         $item->save();
         return redirect()->route('dashboard.home');
     }
@@ -44,7 +48,10 @@ class ItemsController extends Controller {
 
     public function update(Request $request, Item $item) {
         $item->name = $request->name;
-        $item->price = $request->price;
+        $item->rent_price = $request->rent_price;
+        $item->purchased_price = $request->purchased_price;
+        $item->code = $request->code;
+        $item->availability = $request->availability;
         $item->update();
         return redirect()->route('dashboard.home');
     }
