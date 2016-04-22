@@ -1,3 +1,5 @@
+@extends('main_structure')
+@section('content')
 <p>Item Name : {{$item->name}}</p>
 <p>Item Price: {{$item->price}}</p>
 <img src="{{$item->image_url}}" width="100px"></img>
@@ -10,3 +12,4 @@
         {!! csrf_field() !!} {!! method_field('DELETE') !!}
         <button type="submit">Delete</button>
     </form>
+@stop

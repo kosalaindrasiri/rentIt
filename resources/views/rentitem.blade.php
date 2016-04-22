@@ -1,3 +1,5 @@
+@extends('main_structure')
+@section('content')
 <form action="{{route('rents.add')}}" method="POST">
     {!! csrf_field() !!}
     <h2>You can rent an item here</h2>
@@ -18,3 +20,4 @@
     echo '</br>';
     }
 ?>
+@stop

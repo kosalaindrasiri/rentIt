@@ -1,4 +1,5 @@
-
+@extends('main_structure')
+@section('content')
 <form method="get" action="{{route('dashboard.rents.all')}}">
     <button type="submit">Rent an Item</button>
 </form>
@@ -27,3 +28,4 @@ foreach ($items as $item){
 }
 
 ?>
+@stop
