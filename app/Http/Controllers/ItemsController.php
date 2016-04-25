@@ -8,43 +8,49 @@ use App\Item;
 
 class ItemsController extends Controller {
 
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     public function showAll() {
         $items = Item::orderBy('created_at', 'asc')->get();
         return view('home', ['items' => $items]);
     }
-    
-    public function addItem(Request $request){
-        $fileStoreIn = '../public/images/'; 
+
+    public function addItem(Request $request) {
+        $fileStoreIn = '../public/images/';
         $filename = str_random(10);
-       $img_ext=substr($request->file('image')->getClientMimeType(),6);
-        $request->file('image')->move($fileStoreIn, $filename.'.'.$img_ext);
+
+        $img_ext = substr($request->file('image')->getClientMimeType(), 6);
+        $request->file('image')->move($fileStoreIn, $filename . '.' . $img_ext);
         $item = new Item();
         $item->name = $request->input('name');
         $item->price = $request->price;
-        $item->image_url = '/images/'.$filename.'.'.$img_ext;
+        $item->image_url = '/images/' . $filename . '.' . $img_ext;
+        
         var_dump($item);
         $item->save();
         return redirect()->route('dashboard.home');
     }
-    
-    public function delete(Item $item){
-        $item ->delete();
-         return redirect()->route('dashboard.home');
+
+    public function delete(Item $item) {
+        $item->delete();
+        return redirect()->route('dashboard.home');
     }
-    
-    public function view(Item $item){
-        return view('viewitem', ['item'=>$item] );
+
+    public function view(Item $item) {
+        return view('viewitem', ['item' => $item]);
     }
-    
-    public function updateForm(Item $item){
-        return view('updateitem', ['item'=>$item] );
+
+    public function updateForm(Item $item) {
+        return view('updateitem', ['item' => $item]);
     }
-    
-    public function update(Request $request,  Item $item ){
+
+    public function update(Request $request, Item $item) {
         $item->name = $request->name;
         $item->price = $request->price;
         $item->update();
         return redirect()->route('dashboard.home');
     }
-    
+
 }
