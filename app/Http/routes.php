@@ -25,10 +25,7 @@ Route::group(['middleware' => 'auth'], function() {
         'as' => 'rents.add',
         'uses' => 'RentController@add'
     ]);
-    Route::get('/customers/create', [
-        'as' => 'customers.create',
-        'uses' => 'CustomerController@create'
-    ]);
+
 
     Route::post('/customers/create', [
         'as' => 'customers.add',
@@ -66,6 +63,12 @@ Route::group(['middleware' => 'auth'], function() {
             'as' => 'dashboard.rents.all',
             'uses' => 'RentController@view'
         ]);
+
+        Route::get('/customers/create', [
+            'as' => 'dashboard.customers.create',
+            'uses' => 'CustomerController@create'
+        ]);
+
         Route::get('customers', [
             'as' => 'dashboard.customers.all',
             'uses' => 'CustomerController@showAll'

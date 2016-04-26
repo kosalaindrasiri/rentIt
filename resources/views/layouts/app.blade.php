@@ -64,7 +64,7 @@
 
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Customers <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{route('customers.create')}}">Add Customer</a></li>
+                                <li><a href="{{route('dashboard.customers.create')}}">Add Customer</a></li>
                                 <li><a href="{{route('dashboard.customers.all')}}">View Customers</a></li>
                             </ul>
                         </li>
