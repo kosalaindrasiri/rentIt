@@ -8,10 +8,6 @@ use App\Item;
 
 class ItemsController extends Controller {
 
-    public function __construct() {
-        $this->middleware('auth');
-    }
-
     public function showAll() {
         $items = Item::orderBy('created_at', 'asc')->get();
         return view('home', ['items' => $items]);

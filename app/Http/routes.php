@@ -3,80 +3,84 @@
 Route::get('/', function () {
     return redirect('dashboard');
 });
-Route::post('/items', [
-    'as' => 'items.add',
-    'uses' => 'ItemsController@addItem'
-]);
 
-Route::delete('items/{item}', [
-    'as' => 'items.delete',
-    'uses' => 'ItemsController@delete'
-]);
+Route::group(['middleware' => 'auth'], function() {
 
-Route::put('items/{item}', [
-    'as' => 'items.update',
-    'uses' => 'ItemsController@update'
-]);
-
-Route::post('/rent', [
-    'as' => 'rents.add',
-    'uses' => 'RentController@add'
-]);
-Route::get('/customers/create', [
-    'as' => 'customers.create',
-    'uses' => 'CustomerController@create'
-]);
-
-Route::post('/customers/create', [
-    'as' => 'customers.add',
-    'uses' => 'CustomerController@add'
-]);
-
-Route::put('customers/{customer}', [
-    'as' => 'customers.update',
-    'uses' => 'CustomerController@update'
-]);
-
-Route::delete('customers/{customer}', [
-    'as' => 'customers.delete',
-    'uses' => 'CustomerController@delete'
-]);
-
-Route::group(['prefix' => 'dashboard/'], function() {
-
-    Route::get('/', [
-        'as' => 'dashboard.home',
-        'uses' => 'ItemsController@showAll'
+    Route::post('/items', [
+        'as' => 'items.add',
+        'uses' => 'ItemsController@addItem'
     ]);
 
-    Route::get('items/{item}', [
-        'as' => 'dashboard.items.one',
-        'uses' => 'ItemsController@view'
+    Route::delete('items/{item}', [
+        'as' => 'items.delete',
+        'uses' => 'ItemsController@delete'
     ]);
 
-    Route::get('items/{item}/update', [
-        'as' => 'dashboard.items.one.update',
-        'uses' => 'ItemsController@updateForm'
+    Route::put('items/{item}', [
+        'as' => 'items.update',
+        'uses' => 'ItemsController@update'
     ]);
 
-    Route::get('/rents', [
-        'as' => 'dashboard.rents.all',
-        'uses' => 'RentController@view'
+    Route::post('/rent', [
+        'as' => 'rents.add',
+        'uses' => 'RentController@add'
     ]);
-    Route::get('customers', [
-        'as' => 'dashboard.customers.all',
-        'uses' => 'CustomerController@showAll'
-    ]);
-
-    Route::get('customers/{customer}', [
-        'as' => 'dashboard.customers.one',
-        'uses' => 'CustomerController@view'
+    Route::get('/customers/create', [
+        'as' => 'customers.create',
+        'uses' => 'CustomerController@create'
     ]);
 
-    Route::get('customers/{customer}/update', [
-        'as' => 'dashboard.customers.one.update',
-        'uses' => 'CustomerController@updateForm'
+    Route::post('/customers/create', [
+        'as' => 'customers.add',
+        'uses' => 'CustomerController@add'
     ]);
+
+    Route::put('customers/{customer}', [
+        'as' => 'customers.update',
+        'uses' => 'CustomerController@update'
+    ]);
+
+    Route::delete('customers/{customer}', [
+        'as' => 'customers.delete',
+        'uses' => 'CustomerController@delete'
+    ]);
+
+    Route::group(['prefix' => 'dashboard/'], function() {
+
+        Route::get('/', [
+            'as' => 'dashboard.home',
+            'uses' => 'ItemsController@showAll'
+        ]);
+
+        Route::get('items/{item}', [
+            'as' => 'dashboard.items.one',
+            'uses' => 'ItemsController@view'
+        ]);
+
+        Route::get('items/{item}/update', [
+            'as' => 'dashboard.items.one.update',
+            'uses' => 'ItemsController@updateForm'
+        ]);
+
+        Route::get('/rents', [
+            'as' => 'dashboard.rents.all',
+            'uses' => 'RentController@view'
+        ]);
+        Route::get('customers', [
+            'as' => 'dashboard.customers.all',
+            'uses' => 'CustomerController@showAll'
+        ]);
+
+        Route::get('customers/{customer}', [
+            'as' => 'dashboard.customers.one',
+            'uses' => 'CustomerController@view'
+        ]);
+
+        Route::get('customers/{customer}/update', [
+            'as' => 'dashboard.customers.one.update',
+            'uses' => 'CustomerController@updateForm'
+        ]);
+    });
 });
 
 Route::auth();
