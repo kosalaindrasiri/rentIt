@@ -27,7 +27,7 @@
     </head>
     <body id="app-layout">
         <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
@@ -56,8 +56,8 @@
 
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Rent <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Add Rent</a></li>
-                                <li><a href="#">View Rents</a></li>
+                                <li><a href="{{route('dashboard.rents.create')}}">Add Rent</a></li>
+                                <li><a href="{{route('dashboard.rents.all')}}">View Rents</a></li>
                                 <li><a href="#">Return Item</a></li>
                             </ul>
                         </li>
@@ -99,7 +99,15 @@
             </div>
         </nav>
 
-        @yield('content')
+        <div class="container-fluid">
+            @if (Session::has('message'))
+            <div class="alert alert-success" role="alert">
+                {{ Session::get('message') }}
+            </div>
+            @endif
+
+            @yield('content')
+        </div>
 
         <!-- JavaScripts -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>

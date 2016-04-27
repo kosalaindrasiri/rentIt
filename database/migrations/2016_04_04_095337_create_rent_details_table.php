@@ -3,26 +3,23 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRentDetailsTable extends Migration
-{
+class CreateRentDetailsTable extends Migration {
+
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up()
-    {
-        Schema::create('rent_details', function (Blueprint $table) {
+    public function up() {
+        Schema::create('rents', function (Blueprint $table) {
             $table->increments('id');
-            $table->timestamps();
-            $table->string('customer_name');
-            $table->string('nic');
-            $table->float('phone');
             $table->integer('item_id')->unsigned();
-            $table->datetime('rent_date_and_time');
-            $table->datetime('required_days');
-            $table->float('paid');
-                               
+            $table->integer('customer_id')->unsigned();
+            $table->date('rent_date');
+            $table->date('rent_expect_date');
+            $table->float('paid_amount');
+            $table->boolean('rent_return');
+            $table->timestamps();
         });
     }
 
@@ -31,8 +28,8 @@ class CreateRentDetailsTable extends Migration
      *
      * @return void
      */
-    public function down()
-    {
-        Schema::drop('rent_details');
+    public function down() {
+        Schema::drop('rents');
     }
+
 }

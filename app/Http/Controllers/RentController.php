@@ -3,27 +3,77 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
+use App\Rent;
+use App\Item;
+use App\Customer;
 
-use App\RentDetail;
+class RentController extends Controller {
 
-class RentController extends Controller
-{
-    public function view(){
-        $rentrecord = RentDetail::orderBy('created_at', 'asc')->get();
-        return view('rentitem', ['rentlist'=>$rentrecord] );
+    public function view() {
+        $rents = Rent::orderBy('updated_at', 'ASC')->get();
+        return view('rent.index', ['rents' => $rents]);
     }
-    
+
+    public function create() {
+        $items = Item::all();
+        $customers = Customer::all();
+        return view('rent.create')->with(compact(['items', 'customers']));
+    }
+
     public function add(Request $request) {
-        $rentitem = new \App\RentDetail();
-        $rentitem->item_id = $request->input('item');
-        $rentitem->nic = $request->input('nic');
-        $rentitem->rent_date_and_time = $request->input('rentdate');
-        $rentitem->paid = $request->input('paidamnt');
-        $rentitem->save();
-        
-        return redirect()->route('dashboard.rents.all');
+
+        $this->validate($request, [
+            'item_name' => 'required',
+            'customer_name' => 'required',
+            'rent_date' => 'required|date',
+            'rent_expect_date' => 'required|date'
+        ]);
+
+        $rents = new Rent();
+        $rents->item_id = $request->input('item_name');
+        $rents->customer_id = $request->input('customer_name');
+        $rents->rent_date = $request->input('rent_date');
+        $rents->rent_expect_date = $request->input('rent_expect_date');
+        $rents->paid_amount = $request->input('paid_amount');
+        $rents->rent_return = $request->input('rent_return');
+        $rents->save();
+
+        return redirect()->route('dashboard.rents.all')->with('message', 'Rent successfully added.');
     }
-           
+
+    public function edit($id) {
+        $items = Item::all();
+        $customers = Customer::all();
+        $rent = Rent::find($id);
+        return view('rent.edit')->with(compact(['items', 'customers', 'rent']));
+    }
+
+    public function update(Request $request) {
+        $this->validate($request, [
+            'item_name' => 'required',
+            'customer_name' => 'required',
+            'rent_date' => 'required|date',
+            'rent_expect_date' => 'required|date'
+        ]);
+
+        $rents = Rent::find($request->input('id'));
+
+        $rents->item_id = $request->input('item_name');
+        $rents->customer_id = $request->input('customer_name');
+        $rents->rent_date = $request->input('rent_date');
+        $rents->rent_expect_date = $request->input('rent_expect_date');
+        $rents->paid_amount = $request->input('paid_amount');
+        $rents->rent_return = $request->input('rent_return');
+        $rents->save();
+
+        return redirect()->route('dashboard.rents.all')->with('message', 'Rent successfully updated.');
+    }
+
+    public function delete($id) {
+        $rents = Rent::find($id);
+        $rents->delete();
+        return redirect()->route('dashboard.rents.all')->with('message', 'Rent successfully deleted.');
+    }
+
 }

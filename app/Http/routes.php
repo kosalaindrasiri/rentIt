@@ -26,6 +26,10 @@ Route::group(['middleware' => 'auth'], function() {
         'uses' => 'RentController@add'
     ]);
 
+    Route::post('/update-rent', [
+        'as' => 'rents.update',
+        'uses' => 'RentController@update'
+    ]);
 
     Route::post('/customers/create', [
         'as' => 'customers.add',
@@ -67,6 +71,21 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/customers/create', [
             'as' => 'dashboard.customers.create',
             'uses' => 'CustomerController@create'
+        ]);
+
+        Route::get('/add-rent', [
+            'as' => 'dashboard.rents.create',
+            'uses' => 'RentController@create'
+        ]);
+
+        Route::get('/edit-rent/{id}', [
+            'as' => 'dashboard.rents.edit',
+            'uses' => 'RentController@edit'
+        ]);
+
+        Route::get('/delete-rent/{id}', [
+            'as' => 'dashboard.rents.delete',
+            'uses' => 'RentController@delete'
         ]);
 
         Route::get('customers', [
