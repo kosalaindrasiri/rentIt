@@ -45,6 +45,10 @@ Route::group(['middleware' => 'auth'], function() {
         'as' => 'customers.delete',
         'uses' => 'CustomerController@delete'
     ]);
+    Route::post('return/add', [
+        'as' => 'return.add',
+        'uses' => 'ReturnController@add'
+    ]);
 
     Route::group(['prefix' => 'dashboard/'], function() {
 
@@ -109,6 +113,10 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('customers/{customer}/update', [
             'as' => 'dashboard.customers.one.update',
             'uses' => 'CustomerController@updateForm'
+        ]);
+        Route::get('/return', [
+            'as' => 'dashboard.return.add',
+            'uses' => 'ReturnController@addWindow'
         ]);
     });
 });
