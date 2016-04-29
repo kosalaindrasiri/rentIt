@@ -49,8 +49,8 @@
                     <ul class="nav navbar-nav">
                         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Items <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Add Item</a></li>
-                                <li><a href="#">View Items</a></li>
+                                <li><a href="{{route('dashboard.items.create')}}">Add Item</a></li>
+                                <li><a href="{{route('dashboard.items.all')}}">View Items</a></li>
                             </ul>
                         </li>
 

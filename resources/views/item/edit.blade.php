@@ -1,4 +1,4 @@
-@extends('main_structure')
+@extends('layouts.app')
 @section('content')
 <form action="{{ url('items/'.$item->id) }}" method="POST" >
     {!! csrf_field() !!}{!! method_field('PUT') !!}

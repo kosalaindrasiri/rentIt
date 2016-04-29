@@ -50,7 +50,17 @@ Route::group(['middleware' => 'auth'], function() {
 
         Route::get('/', [
             'as' => 'dashboard.home',
+            'uses' => 'homePageController@showAll'
+        ]);
+
+        Route::get('/items', [
+            'as' => 'dashboard.items.all',
             'uses' => 'ItemsController@showAll'
+        ]);
+
+        Route::get('/items/create', [
+            'as' => 'dashboard.items.create',
+            'uses' => 'ItemsController@create'
         ]);
 
         Route::get('items/{item}', [
