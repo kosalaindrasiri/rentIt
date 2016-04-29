@@ -4,14 +4,6 @@
     <div class="row">
         <div class="col-sm-12">
 
-            @if ($errors->has())
-            <div class="alert alert-danger">
-                @foreach ($errors->all() as $error)
-                {{ $error }}<br>        
-                @endforeach
-            </div>
-            @endif
-
             <h2>Add new Customer</h2>
             <form action="{{ url('customers/'.$customers->id) }}" method="POST" >
                 {!! csrf_field() !!}{!! method_field('PUT') !!}
@@ -33,6 +25,15 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Update Customer</button>
             </form>
+            <br>
+            @if ($errors->has())
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                {{ $error }}<br>        
+                @endforeach
+            </div>
+            @endif
+
         </div>
     </div>
 </div>
