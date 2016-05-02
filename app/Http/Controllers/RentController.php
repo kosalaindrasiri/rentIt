@@ -35,8 +35,8 @@ class RentController extends Controller {
         $rents->customer_id = $request->input('customer_name');
         $rents->rent_date = $request->input('rent_date');
         $rents->rent_expect_date = $request->input('rent_expect_date');
+        $rents->rent_cost = $request->input('rent_cost');
         $rents->paid_amount = $request->input('paid_amount');
-        $rents->rent_return = $request->input('rent_return');
         $rents->save();
 
         return redirect()->route('dashboard.rents.all')->with('message', 'Rent successfully added.');
@@ -63,8 +63,8 @@ class RentController extends Controller {
         $rents->customer_id = $request->input('customer_name');
         $rents->rent_date = $request->input('rent_date');
         $rents->rent_expect_date = $request->input('rent_expect_date');
+        $rents->rent_cost = $request->input('rent_cost');
         $rents->paid_amount = $request->input('paid_amount');
-        $rents->rent_return = $request->input('rent_return');
         $rents->save();
 
         return redirect()->route('dashboard.rents.all')->with('message', 'Rent successfully updated.');

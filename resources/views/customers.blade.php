@@ -4,6 +4,22 @@
     <div class="row">
         <div class="col-sm-12">
 
+            @if(Session::has('updated'))
+            <p class="alert alert-success">
+                {{ Session::get('updated') }}
+                @endif
+            </p>
+            @if(Session::has('created'))
+            <p class="alert alert-success">
+                {{ Session::get('created') }}
+                @endif
+            </p>
+            @if(Session::has('info'))
+            <p class="alert alert-success">
+                {{ Session::get('info') }}
+                @endif
+            </p>
+
             <h2>All Customers</h2>
             <h3><a href="{{route('dashboard.customers.create')}}">New Customer</a></h3>
             <table class="table table-bordered">

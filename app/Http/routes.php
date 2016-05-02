@@ -50,17 +50,7 @@ Route::group(['middleware' => 'auth'], function() {
 
         Route::get('/', [
             'as' => 'dashboard.home',
-            'uses' => 'homePageController@showAll'
-        ]);
-
-        Route::get('/items', [
-            'as' => 'dashboard.items.all',
             'uses' => 'ItemsController@showAll'
-        ]);
-
-        Route::get('/items/create', [
-            'as' => 'dashboard.items.create',
-            'uses' => 'ItemsController@create'
         ]);
 
         Route::get('items/{item}', [
@@ -83,17 +73,17 @@ Route::group(['middleware' => 'auth'], function() {
             'uses' => 'CustomerController@create'
         ]);
 
-        Route::get('/add-rent', [
+        Route::get('/rent/add', [
             'as' => 'dashboard.rents.create',
             'uses' => 'RentController@create'
         ]);
 
-        Route::get('/edit-rent/{id}', [
+        Route::get('/rent/edit/{id}', [
             'as' => 'dashboard.rents.edit',
             'uses' => 'RentController@edit'
         ]);
 
-        Route::get('/delete-rent/{id}', [
+        Route::get('/rent/delete/{id}', [
             'as' => 'dashboard.rents.delete',
             'uses' => 'RentController@delete'
         ]);
