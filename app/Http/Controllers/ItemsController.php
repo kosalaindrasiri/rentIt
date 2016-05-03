@@ -24,6 +24,7 @@ class ItemsController extends Controller {
                     'name' => 'required',
                     'purchased_price' => 'required|regex:/^\d*(\.\d{2})?$/',
                     'rent_price' => 'required|regex:/^\d*(\.\d{2})?$/',
+                    'code' => 'unique:items,code'
         ]);
         if ($v->fails()) {
             return Redirect::back()->withErrors($v)->withInput();
@@ -72,6 +73,7 @@ class ItemsController extends Controller {
                     'name' => 'required',
                     'purchased_price' => 'required|regex:/^\d*(\.\d{2})?$/',
                     'rent_price' => 'required|regex:/^\d*(\.\d{2})?$/',
+                    'code' => 'unique:items,code,'.$item->id,
         ]);
         if ($v->fails()) {
             return Redirect::back()->withErrors($v)->withInput();

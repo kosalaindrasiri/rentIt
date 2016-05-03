@@ -44,7 +44,7 @@
                     </div> 
                 </div> 
 
-                <div class="form-group col-lg-12" style="background-color:{{ $errors->has('code') ? '#f2dede' : 'white' }}"> 
+                <div class="form-group col-lg-12"> 
                     <label class="col-sm-4 control-label">Image :</label> 
                     <div class="col-sm-8"> 
                         <?php

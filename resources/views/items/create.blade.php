@@ -25,7 +25,7 @@
                         <input type="text" name="rent_price" class="form-control"  value="{{old('rent_price')}}">
                     </div>
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="background-color:{{ $errors->has('code') ? '#f2dede' : 'white' }}">
                     <label  class="col-sm-4 control-label">Code :</label>
                     <div class="col-sm-8">
                         <input type="text" name="code" class="form-control"  value="{{old('code')}}">
