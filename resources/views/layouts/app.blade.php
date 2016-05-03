@@ -61,7 +61,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="{{route('dashboard.rents.create')}}">Add Rent</a></li>
                                 <li><a href="{{route('dashboard.rents.all')}}">View Rents</a></li>
-                                <li><a href="#">Return Item</a></li>
+                                <li><a href="{{route('dashboard.return.add')}}">Return Item</a></li>
                             </ul>
                         </li>
 
