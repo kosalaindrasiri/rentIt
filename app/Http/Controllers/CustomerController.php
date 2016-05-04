@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Customer;
+use App\Rent;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
@@ -73,8 +74,9 @@ class CustomerController extends Controller {
         }
     }
     
-    public function  rents(){
-        echo ('selcted custommers rent records will show here');
-    }
+    public function  rents( $customer){
+        $rentRecords = Rent::where('customer_id', '=', $customer)->first();
+        print ($rentRecords->id);
+        }
 
 }
