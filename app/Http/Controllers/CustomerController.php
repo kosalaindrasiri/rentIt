@@ -72,5 +72,9 @@ class CustomerController extends Controller {
             return redirect()->route('dashboard.customers.all');
         }
     }
+    
+    public function  rents(){
+        echo ('selcted custommers rent records will show here');
+    }
 
 }

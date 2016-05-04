@@ -1,5 +1,25 @@
 @extends('layouts.app')
 @section('content')
+<script type="text/javascript">
+
+    function changeFunc() {
+        var selectCustomer = document.getElementById("selectCustomer");
+        var selectedValue = selectCustomer.options[selectCustomer.selectedIndex].value;
+        alert(selectedValue);
+        //xhttp.open("GET", "dashboard/selectedCusRentRecords/" + var selectedValue, true);
+        //xhttp.send();
+    }
+
+    $(document).ready(function () {
+        $("#selectCustomer").change(function () {
+            var selectedValue = this.value;
+            $.get("/dashboard/customers/" + selectedValue + "/rents/", function (data, stat) {
+                $("#content").html(data);
+            });
+        });
+    });
+
+</script>
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
@@ -16,7 +36,7 @@
                     </select>
                 </div>
             </div>
-            
+            <div id="content"></div>
         </div>
     </div>
 </div>

@@ -118,6 +118,11 @@ Route::group(['middleware' => 'auth'], function() {
             'as' => 'dashboard.return.add',
             'uses' => 'ReturnController@addWindow'
         ]);
+        
+        Route::get('/customers/{id}/rents', [
+            'as' => 'dashboard.customers.rents',
+            'uses' => 'CustomerController@rents'
+        ]);
     });
 });
 
