@@ -7,6 +7,7 @@ use App\Customer;
 use App\Rent;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Collection;
 
 class CustomerController extends Controller {
 
@@ -73,10 +74,10 @@ class CustomerController extends Controller {
             return redirect()->route('dashboard.customers.all');
         }
     }
-    
-    public function  rents( $customer){
-        $rentRecords = Rent::where('customer_id', '=', $customer)->first();
-        print ($rentRecords->id);
-        }
+
+    public function rents($customer) {
+        $rentRecords = Rent::where('customer_id', '=', $customer)->get()->all();
+            return response()->json($rentRecords);
+    }
 
 }

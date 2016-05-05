@@ -13,8 +13,8 @@
     $(document).ready(function () {
         $("#selectCustomer").change(function () {
             var selectedValue = this.value;
-            $.get("/dashboard/customers/" + selectedValue + "/rents/", function (data, stat) {
-                $("#content").html(data);
+            $.get("/customers/" + selectedValue + "/rents/", function (data, stat) {
+                $("#content").html(data[0].id);
             });
         });
     });
