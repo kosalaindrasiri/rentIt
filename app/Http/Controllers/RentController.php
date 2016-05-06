@@ -24,18 +24,17 @@ class RentController extends Controller {
     public function add(Request $request) {
 
         $this->validate($request, [
-            'item_name' => 'required',
-            'customer_name' => 'required',
+            'item' => 'required',
+            'customer' => 'required',
             'rent_date' => 'required|date',
-            'rent_expect_date' => 'required|date'
+            'expected_return_date' => 'required|date'
         ]);
 
         $rents = new Rent();
-        $rents->item_id = $request->input('item_name');
-        $rents->customer_id = $request->input('customer_name');
+        $rents->item_id = $request->input('item');
+        $rents->customer_id = $request->input('customer');
         $rents->rent_date = $request->input('rent_date');
-        $rents->rent_expect_date = $request->input('rent_expect_date');
-        $rents->rent_cost = $request->input('rent_cost');
+        $rents->expected_return_date = $request->input('expected_return_date');
         $rents->paid_amount = $request->input('paid_amount');
         $rents->save();
 
@@ -51,19 +50,18 @@ class RentController extends Controller {
 
     public function update(Request $request) {
         $this->validate($request, [
-            'item_name' => 'required',
-            'customer_name' => 'required',
+            'item' => 'required',
+            'customer' => 'required',
             'rent_date' => 'required|date',
-            'rent_expect_date' => 'required|date'
+            'expected_return_date' => 'required|date'
         ]);
 
         $rents = Rent::find($request->input('id'));
 
-        $rents->item_id = $request->input('item_name');
-        $rents->customer_id = $request->input('customer_name');
+        $rents->item_id = $request->input('item');
+        $rents->customer_id = $request->input('customer');
         $rents->rent_date = $request->input('rent_date');
-        $rents->rent_expect_date = $request->input('rent_expect_date');
-        $rents->rent_cost = $request->input('rent_cost');
+        $rents->expected_return_date = $request->input('expected_return_date');
         $rents->paid_amount = $request->input('paid_amount');
         $rents->save();
 

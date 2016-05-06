@@ -20,6 +20,7 @@
                     <th>Customer Name</th>
                     <th>Rent Date</th>
                     <th>Expected Return Date</th>
+                    <th>Rent Cost</th>
                     <th>Paid Amount</th>
                     <th>Return</th>
                     <th>&nbsp;</th>
@@ -32,7 +33,18 @@
                     <td>{{ $rent-> item ->name }}</td>
                     <td>{{ $rent-> customer ->customer_name }}</td>
                     <td>{{ $rent-> rent_date }}</td>
-                    <td>{{ $rent-> rent_expect_date }}</td>
+                    <td>{{ $rent-> expected_return_date }}</td>
+                    <td>
+                        <?php
+                        $date1 = date_create($rent->rent_date);
+                        $date2 = date_create($rent->expected_return_date);
+                        $cost = $rent->item->rent_price;
+
+                        $diff = date_diff($date1, $date2);
+                        $tot = ($diff->days) * $cost;
+                        echo $tot;
+                        ?>
+                    </td>
                     <td>{{ $rent-> paid_amount }}</td>
                     <td>
                         @if($rent-> rent_return == 0)

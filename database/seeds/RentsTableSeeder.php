@@ -15,8 +15,7 @@ class RentsTableSeeder extends Seeder
             'item_id' => '1',
             'customer_id' => "1",
             'rent_date' => '2016.05.01',
-            'rent_expect_date' => '2016.05.07',
-            'rent_cost' => '500',
+            'expected_return_date' => '2016.05.07',
             'paid_amount' => '100',
             'rent_return' => '1'
         ],
@@ -25,8 +24,7 @@ class RentsTableSeeder extends Seeder
             'item_id' => '2',
             'customer_id' => "1",
             'rent_date' => '2016.05.01',
-            'rent_expect_date' => '2016.05.07',
-            'rent_cost' => '500',
+            'expected_return_date' => '2016.05.07',
             'paid_amount' => '100',
             'rent_return' => '1'
         ]

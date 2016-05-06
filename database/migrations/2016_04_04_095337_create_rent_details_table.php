@@ -16,8 +16,7 @@ class CreateRentDetailsTable extends Migration {
             $table->integer('item_id')->unsigned();
             $table->integer('customer_id')->unsigned();
             $table->date('rent_date');
-            $table->date('rent_expect_date');
-            $table->float('rent_cost');
+            $table->date('expected_return_date');
             $table->float('paid_amount');
             $table->boolean('rent_return');
             $table->timestamps();
