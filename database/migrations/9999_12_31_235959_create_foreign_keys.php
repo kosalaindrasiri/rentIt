@@ -27,6 +27,21 @@ class CreateForeignKeys extends Migration {
                     ->onUpdate('cascade')
                     ->onDelete('cascade');
         });
+        Schema::table('item_rent', function(Blueprint $table) {
+            $table
+                    ->foreign('item_id')
+                    ->references('id')
+                    ->on('items')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+
+            $table
+                    ->foreign('rent_id')
+                    ->references('id')
+                    ->on('rents')
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+        });
     }
 
     /**
@@ -35,8 +50,14 @@ class CreateForeignKeys extends Migration {
      * @return void
      */
     public function down() {
-        $table->dropForeign('rents_customer_id_foreign');
-        $table->dropForeign('rents_item_id_foreign');
+        Schema::table('item_rent', function(Blueprint $table) {
+            $table->dropForeign('item_rent_rent_id_foreign');
+            $table->dropForeign('item_rent_item_id_foreign');
+        });
+        Schema::table('rents', function(Blueprint $table) {
+            $table->dropForeign('rents_customer_id_foreign');
+            $table->dropForeign('rents_item_id_foreign');
+        });
     }
 
 }
