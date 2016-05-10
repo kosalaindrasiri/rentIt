@@ -1,15 +1,81 @@
 @extends('layouts.app')
-
 @section('content')
+
+<?php
+$return_all = '';
+$return_no = '';
+$return_yes = '';
+$item_name = '';
+$keyword = '';
+$paid_yes='';
+$paid_no='';
+$paid_all='';
+
+if (isset($_GET['return'])) {
+    $return_status = $_GET['return'];
+    if ($return_status == 'yes') {
+        $return_yes = 'selected';
+    } elseif ($return_status == 'no') {
+        $return_no = 'selected';
+    }else {
+    $return_all = 'selected';
+}
+} else {
+    $return_all = 'selected';
+}
+if (isset($_GET['completely_paid'])) {
+    $paid_status = $_GET['completely_paid'];
+    if ($paid_status == 'yes') {
+        $paid_yes = 'selected';
+    } elseif ($paid_status == 'no') {
+        $paid_no = 'selected';
+    }else {
+    $paid_all = 'selected';
+}
+} else {
+    $paid_all = 'selected';
+}
+if (isset($_GET['search_keyword'])) {
+    $keyword = $_GET['search_keyword'];
+}
+?>
+
 <div class="row">
     <div class="col-sm-12">
+        <form  action="{{route('dashboard.rents.search')}}" method="GET">
+            <div class="form-group">
+                <label class="col-sm-2">Return Status:</label>
+                <div class="col-sm-1">
+                    <select class="form-control" name="return">
+                        <option value="yes" <?php echo $return_yes; ?>>Yes</option>
+                        <option value="no" <?php echo $return_no; ?>>No</option>
+                        <option value="all" <?php echo $return_all; ?>>All</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2">Completely Paid :</label>
+                <div class="col-sm-1">
+                    <select class="form-control" name="completely_paid">
+                        <option value="yes" <?php echo $paid_yes; ?>>Yes</option>
+                        <option value="no" <?php echo $paid_no; ?>>No</option>
+                        <option value="all" <?php echo $paid_all; ?>>All</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2">Search :</label>
+                <div class="col-sm-2">
+                    <input type="text" name="search_keyword" class="form-control" value="<?php echo $keyword; ?>">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
         <h2>All Rents</h2>
-
         @if ( !$rents->count() )
         <div class="alert alert-danger" role="alert">No rents available.</div>
 
         @else
-
         <a href="{{route('dashboard.rents.create')}}" class="btn btn-default">Add Rent</a>
 
         <table class="table">

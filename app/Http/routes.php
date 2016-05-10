@@ -75,7 +75,12 @@ Route::group(['middleware' => 'auth'], function() {
             'as' => 'dashboard.rents.all',
             'uses' => 'RentController@view'
         ]);
-
+        
+        Route::get('/rents/search', [
+            'as' => 'dashboard.rents.search',
+            'uses' => 'RentController@search'
+        ]);
+        
         Route::get('/customers/create', [
             'as' => 'dashboard.customers.create',
             'uses' => 'CustomerController@create'

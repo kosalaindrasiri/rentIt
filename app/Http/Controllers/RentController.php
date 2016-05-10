@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 use App\Http\Requests;
 use App\Rent;
 use App\Item;
@@ -13,6 +14,38 @@ class RentController extends Controller {
     public function view() {
         $rents = Rent::orderBy('updated_at', 'ASC')->get();
         return view('rent.index', ['rents' => $rents]);
+    }
+
+    public function search(Request $request) {
+        $return_status = $request->return;
+        $paid_status = $request->completely_paid;
+        $search_text = $request->search_keyword;
+        if ($return_status == 'all') {
+            $return_status = '%';
+        } elseif ($return_status == "yes") {
+            $return_status = '1';
+        } else {
+            $return_status = '0';
+        }
+        $rents = Rent::search($search_text, ['item.name' => 10, 'customer.customer_name' => 10])->where('rent_return', 'like', $return_status)->get();
+
+        $filtered = $rents->filter(function ($rent) use ($paid_status) {
+            $date1 = date_create($rent->rent_date);
+            $date2 = date_create($rent->expected_return_date);
+            $cost = $rent->item->rent_price;
+
+            $diff = date_diff($date1, $date2);
+            $tot = ($diff->days) * $cost;
+            if ($paid_status == 'yes') {
+                return ($rent->paid_amount) >= $tot;
+            } elseif ($paid_status == 'no') {
+                return ($rent->paid_amount) < $tot;
+            } else {
+                return $rent;
+            }
+        });
+
+        return view('rent.index', ['rents' => $filtered]);
     }
 
     public function create() {

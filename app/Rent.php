@@ -2,9 +2,12 @@
 
 namespace App;
 
+use Sofa\Eloquence\Eloquence;
 use Illuminate\Database\Eloquent\Model;
 
 class Rent extends Model {
+
+    use Eloquence;
 
     public function item() {
         return $this->belongsTo('App\Item', 'item_id');
